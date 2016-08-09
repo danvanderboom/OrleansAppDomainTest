@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 using Orleans.Runtime.Configuration;
 using Orleans.Runtime.Host;
+using Orleans;
 
 namespace OrleansAppDomainTest
 {
@@ -30,6 +31,10 @@ namespace OrleansAppDomainTest
             try
             {
                 siloHost.InitializeOrleansSilo();
+
+                var AppDomainName = AppDomain.CurrentDomain.FriendlyName;
+                var config = ClientConfiguration.LocalhostSilo();
+                GrainClient.Initialize(config);
 
                 ok = siloHost.StartOrleansSilo();
 

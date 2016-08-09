@@ -22,8 +22,11 @@ namespace OrleansAppDomainTest
                 AppDomainInitializerArguments = args,
             });
 
-            var config = ClientConfiguration.LocalhostSilo();
-            GrainClient.Initialize(config);
+            //if (!GrainClient.IsInitialized)
+            {
+                var config = ClientConfiguration.LocalhostSilo();
+                GrainClient.Initialize(config);
+            }
 
             // TODO: once the previous call returns, the silo is up and running.
             //       This is the place your custom logic, for example calling client logic
